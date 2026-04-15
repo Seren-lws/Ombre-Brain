@@ -19,6 +19,8 @@ A long-term emotional memory system for Claude. Tags memories using Russell's va
 
 **第一步：拉取代码**
 
+(⚠️ 仓库临时迁移 / Repo temporarily moved GitHub 访问受限期间，代码暂时托管在 Gitea： https://git.p0lar1s.uk/P0lar1s/Ombre_Brain 下面的 git clone 地址请临时替换为这个。)
+
 ```bash
 git clone https://git.p0lar1s.uk/P0lar1s/Ombre_Brain.git
 cd Ombre_Brain
