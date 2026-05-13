@@ -486,11 +486,17 @@ class Dehydrator:
         解析并校验 API 返回的打标结果。
         """
         try:
-            # Handle potential markdown code block wrapping
-            # 处理可能的 markdown 代码块包裹
             cleaned = raw.strip()
-            if cleaned.startswith("```"):
-                cleaned = cleaned.split("\n", 1)[-1].rsplit("```", 1)[0]
+            import re
+            match = re.search(r'\{.*\}', cleaned, re.DOTALL)
+            if match:
+                cleaned = match.group()
+            else:
+                if cleaned.startswith("```"):
+                    cleaned = cleaned.split("\n", 1)[-1]
+                if cleaned.endswith("```"):
+                    cleaned = cleaned.rsplit("```", 1)[0]
+                cleaned = cleaned.strip()
             result = json.loads(cleaned)
         except (json.JSONDecodeError, IndexError, ValueError):
             logger.warning(f"API tagging JSON parse failed / JSON 解析失败: {raw[:200]}")
